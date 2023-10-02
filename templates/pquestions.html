@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Croissant+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="icon" href="static/img/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href= "static/CSS/styles.css" > -->
+    <link rel="stylesheet" href= "static/CSS/resstyle.css">
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        label {
+            font-family: 'Lora', serif;
+        }
+        
+        :root {
+            --primary-color: #007BFF;
+            --background-color: white;
+        }
+
+        body {
+            background-color: var(--background-color);
+        }
+
+        .button {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        label:hover {
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .mcqs > div {
+            border: 2px solid #ddd;
+            padding: 20px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            width: 925px;
+        }
+
+        input[type="radio"]:checked + label::before  required{
+            background-color: var(--primary-color);
+            transition: background-color 0.2s ease-in-out;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--background-color);
+            background-image: url("/static/CSS/questions.png");
+            background-repeat: repeat-y;
+            background-position: right top 75px;
+        }
+        
+        /* Add a media query for smaller screens */
+        @media (max-width: 600px) {
+            body {
+                background-image: none; /* Remove the background image on smaller screens */
+            }
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="logo navbar-brand" href="/{{ url_for('index') }}"><img src="static/img/logo.png" width="100" ></a>
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="home nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('login') }}">Log In</a>
+              </li>
+              <li class="home nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('signup') }}">Sign Up</a>
+              </li>
+              <li class="home nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('progress') }}">Your Progress</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav><br>
+    <form action="/process_questions" method="POST">
+    <div class="mcqs">
+        <!-- <a class="logo navbar-brand" href="{{ url_for('index') }}"><img src="static/img/logo.png" width="150px" height="70px" ></a> -->
+        <div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4" style="width: 200px">
+                    <div class="border p-3">
+                        <p>Age</p>
+                        <input type="number" name="Age" id="Age" style="width: 55px; margin-left:30px;" placeholder="16" required>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" style="width: 300px">
+                    <div class="border p-3">
+                        <p>Sex</p>
+                        <input class="choice" type="radio" name="Sex" id="Sex_1" value="1" required>
+                        <label for="Sex_1">Male</label><br>
+                        <input class="choice" type="radio" name="Sex" id="Sex_2" value="2" required>
+                        <label for="Sex_2">Female</label><br>
+                        <input class="choice" type="radio" name="Sex" id="Sex_3" value="3" required>
+                        <label for="Sex_3">Others</label><br>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" style="width: 300px">
+                    <div class="border p-3">
+                        <p>Disability</p>
+                        <input class="choice" type="radio" name="Disability" id="Disability_1" value="1" required>
+                        <label for="Disability_1">Yes</label><br>
+                        <input class="choice" type="radio" name="Disability" id="Disability_2" value="2" required>
+                        <label for="Disability_2">No</label><br>
+                        <input class="choice" type="radio" name="Disability" id="Disability_3" value="4" required>
+                        <label for="Disability_3">Prefer not to answer</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="six">
+            <p>5. How important is studying to you?</p>
+            <input class="choice" type="radio" name="Hobbies_Imp_6" id="Hobbies_Imp_6_1" value="1" required>
+            <label for="Hobbies_Imp_6_1">Not at all important</label><br>
+            
+            <input class="choice" type="radio" name="Hobbies_Imp_6" id="Hobbies_Imp_6_2" value="2" required>
+            <label for="Hobbies_Imp_6_2">Slightly important</label><br>
+            
+            <input class="choice" type="radio" name="Hobbies_Imp_6" id="Hobbies_Imp_6_3" value="3" required>
+            <label for="Hobbies_Imp_6_3">Moderately Important</label><br>
+            
+            <input class="choice" type="radio" name="Hobbies_Imp_6" id="Hobbies_Imp_6_4" value="4" required>
+            <label for="Hobbies_Imp_6_4">Very important</label><br>
+
+            <input class="choice" type="radio" name="Hobbies_Imp_6" id="Hobbies_Imp_6_5"  value="5" required>
+            <label for="Hobbies_Imp_6_5">Extremely important</label>
+    
+            </div>
+        <div class="seven">
+            <p>6. Sleep is a necessity. </p>
+            <input class="choice" type="radio" name="CATS_1" id="CATS_1_1" value="1" required>
+            <label for="CATS_1_1">Strongly Disagree</label><br>
+            
+            <input class="choice" type="radio" name="CATS_1" id="CATS_1_2" value="2" required>
+            <label for="CATS_1_2">Disagree</label><br>
+            
+            <input class="choice" type="radio" name="CATS_1" id="CATS_1_3" value="3" required>
+            <label for="CATS_1_3">Somewhat Disagree</label><br>
+            
+            <input class="choice" type="radio" name="CATS_1" id="CATS_1_4" value="4" required>
+            <label for="CATS_1_4">Neither Agree Nor Disagree</label><br>
+
+            <input class="choice" type="radio" name="CATS_1" id="CATS_1_5" value="5" required>
+            <label for="CATS_1_5">Somewhat Agree</label><br>
+
+            <input class="choice" type="radio" name="CATS_1" id="CATS_1_6" value="6" required>
+            <label for="CATS_1_6">Agree</label><br>
+
+            <input class="choice" type="radio" name="CATS_1" id="CATS_1_7" value="7" required>
+            <label for="CATS_1_7">Strongly Agree</label><br>
+       </div>
+    
+        <div class="eight"><p>7. I usually  choose  schoolwork as  a more  important  activity than  my sleep  schedule.</p>
+            <input class="choice" type="radio" name="CATS_4" id="CATS_4_1" value="1" required>
+            <label for="CATS_4_1">Strongly Disagree</label><br>
+            
+            <input class="choice" type="radio" name="CATS_4" id="CATS_4_2" value="2" required>
+            <label for="CATS_4_2">Disagree</label><br>
+            
+            <input class="choice" type="radio" name="CATS_4" id="CATS_4_3"  value="3" required>
+            <label for="CATS_4_3">Somewhat Disagree</label><br>
+            
+            <input class="choice" type="radio" name="CATS_4" id="CATS_4_4"  value="4" required>
+            <label for="CATS_4_4">Neither Agree Nor Disagree</label><br>
+    
+            <input class="choice" type="radio" name="CATS_4" id="CATS_4_5"  value="5" required>
+            <label for="CATS_4_5">Somewhat Agree</label><br>
+    
+            <input class="choice" type="radio" name="CATS_4" id="CATS_4_6"  value="6" required>
+            <label for="CATS_4_6">Agree</label><br>
+    
+            <input class="choice" type="radio" name="CATS_4" id="CATS_4_7"  value="7" required>
+            <label for="CATS_4_7">Strongly Agree</label><br>
+        </div>
+        
+        <div class="ten"><p>8. Join new groups (e.g. sporting, hobby, interest groups) </p>
+    
+            <input class="choice" type="radio" name="SSS_1" id="SSS_1_1" value="1" required>
+            <label for="SSS_1_1">Not at all</label><br>
+            
+            <input class="choice" type="radio" name="SSS_1" id="SSS_1_2" value="2" required>
+            <label for="SSS_1_2">Rarely</label><br>
+            
+            <input class="choice" type="radio" name="SSS_1" id="SSS_1_3"  value="3" required>
+            <label for="SSS_1_3">Occasionally</label><br>
+            
+            <input class="choice" type="radio" name="SSS_1" id="SSS_1_4"  value="4" required>
+            <label for="SSS_1_4">Sometimes</label><br>
+
+            <input class="choice" type="radio" name="SSS_1" id="SSS_1_5"  value="5" required>
+            <label for="SSS_1_5">A lot</label><br>   
+        </div>
+
+        <div class="eleven"><p>9. Ask for emotional support from family or close friends</p>
+            
+            <input class="choice" type="radio" name="SSS_6" id="SSS_6_1" value="1" required>
+            <label for="SSS_6_1">Not at all</label><br>
+            
+            <input class="choice" type="radio" name="SSS_6" id="SSS_6_2" value="2" required>
+            <label for="SSS_6_2">Rarely</label><br>
+            
+            <input class="choice" type="radio" name="SSS_6" id="SSS_6_3"  value="3" required>
+            <label for="SSS_6_3">Occasionally</label><br>
+            
+            <input class="choice" type="radio" name="SSS_6" id="SSS_6_4"  value="4" required>
+            <label for="SSS_6_4">Sometimes</label><br>
+        
+            <input class="choice" type="radio" name="SSS_6" id="SSS_6_5"  value="5" required>
+            <label for="SSS_6_5">A lot</label><br>
+        
+        </div>
+
+        <div class="twelve"><p>10. Use social media sites to connect with friends</p>
+            
+            <input class="choice" type="radio" name="SSS_12" id="SSS_12_1" value="1" required>
+            <label for="SSS_12_1">Not at all</label><br>
+            
+            <input class="choice" type="radio" name="SSS_12" id="SSS_12_2" value="2" required>
+            <label for="SSS_12_2">Rarely</label><br>
+            
+            <input class="choice" type="radio" name="SSS_12" id="SSS_12_3"  value="3" required>
+            <label for="SSS_12_3">Occasionally</label><br>
+            
+            <input class="choice" type="radio" name="SSS_12" id="SSS_12_4"  value="4" required>
+            <label for="SSS_12_4">Sometimes</label><br>
+        
+            <input class="choice" type="radio" name="SSS_12" id="SSS_12_5"  value="5" required>
+            <label for="SSS_12_5">A lot</label><br>
+        
+        </div>
+        
+    <div class="thirteen"><p>11. It is easy for me to concentrate on what I am doing.</p>
+          
+        <input class="choice" type="radio" name="CAMS_1" id="CAMS_1_1" value="1" required>
+        <label for="CAMS_1_1">Rarely/ Not at all</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_1" id="CAMS_1_2"value="2" required>
+        <label for="CAMS_1_2">Sometimes</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_1" id="CAMS_1_3" value="3" required>
+        <label for="CAMS_1_3">Often</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_1" id="CAMS_1_4" value="4" required>
+        <label for="CAMS_1_4">Almost always</label><br>
+    
+    </div>
+    <div class="fourteen"><p>12. I am preoccupied by the future.</p>
+          
+        <input class="choice" type="radio" name="CAMS_2" id="CAMS_2_1" value="1" required>
+        <label for="CAMS_2_1">Rarely/ Not at all</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_2" id="CAMS_2_2"value="2" required>
+        <label for="CAMS_2_2">Sometimes</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_2" id="CAMS_2_3" value="3" required>
+        <label for="CAMS_2_3">Often</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_2" id="CAMS_2_4" value="4" required>
+        <label for="CAMS_2_4">Almost always</label><br>
+    
+    </div>
+    <div class="fifteen"><p>13. I can tolerate emotional pain.</p>
+          
+        <input class="choice" type="radio" name="CAMS_3" id="CAMS_3_1" value="1" required>
+        <label for="CAMS_3_1">Rarely/ Not at all</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_3" id="CAMS_3_2"value="2" required>
+        <label for="CAMS_3_2">Sometimes</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_3" id="CAMS_3_3" value="3" required>
+        <label for="CAMS_3_3">Often</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_3" id="CAMS_3_4" value="4" required>
+        <label for="CAMS_3_4">Almost always</label><br>
+    
+    </div>
+    <div class="sixteen"><p>14. I can usually describe how I feel at the moment in considerable detail.</p>
+          
+        <input class="choice" type="radio" name="CAMS_5" id="CAMS_5_1" value="1" required>
+        <label for="CAMS_5_1">Rarely/ Not at all</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_5" id="CAMS_5_2"value="2" required>
+        <label for="CAMS_5_2">Sometimes</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_5" id="CAMS_5_3" value="3" required>
+        <label for="CAMS_5_3">Often</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_5" id="CAMS_5_4" value="4" required>
+        <label for="CAMS_5_4">Almost always</label><br>
+    
+    </div>
+    <div class="seventeen"><p>15. I am preoccupied by the past.</p>
+          
+        <input class="choice" type="radio" name="CAMS_7" id="CAMS_7_1"value="1" required>
+        <label for="CAMS_7_1">Almost never</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_7" id="CAMS_7_2"value="2" required>
+        <label for="CAMS_7_2">Sometimes</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_7" id="CAMS_7_3" value="3" required>
+        <label for="CAMS_7_3">Often</label><br>
+        
+        <input class="choice" type="radio" name="CAMS_7" id="CAMS_7_4" value="4" required>
+        <label for="CAMS_7_4">Almost always</label><br>
+    
+    </div>
+
+    <div class="ninteen"><p>16. When I am upset, I have difficulty getting work done.</p>
+          
+        <input class="choice" type="radio" name="DERS_3" id="DERS_3_1" value="1" required>
+        <label for="DERS_3_1">Almost never (0-10%)</label><br>
+    
+        <input class="choice" type="radio" name="DERS_3" id="DERS_3_2" value="2" required>
+        <label for="DERS_3_2">Sometimes (11-35%)</label><br>
+        
+        <input class="choice" type="radio" name="DERS_3" id="DERS_3_3"  value="3" required>
+        <label for="DERS_3_3">About half the time (36-65%)</label><br>
+        
+        <input class="choice" type="radio" name="DERS_3" id="DERS_3_4"  value="4" required>
+        <label for="DERS_3_4">Most of the time(66-90%)</label><br>
+    
+        <input class="choice" type="radio" name="DERS_3" id="DERS_3_5"  value="5" required>
+        <label for="DERS_3_5">Almost always(91-100%)</label><br>
+    
+    </div>
+    <div class="twenty"><p>17. I experienced breathing difficulty (e.g. excessively rapid breathing, breathlessness in the absence of physical exertion)</p>
+        <input class="choice" type="radio" name="DASS_4" id="DASS_4_1" value="1" required>
+        <label for="DASS_4_1">Did not apply to me at all</label><br>
+    
+        <input class="choice" type="radio" name="DASS_4" id="DASS_4_2" value="2" required>
+        <label for="DASS_4_2">Applied to me to some degree, or some of the time </label><br>
+        
+        <input class="choice" type="radio" name="DASS_4" id="DASS_4_3"  value="3" required>
+        <label for="DASS_4_3">Applied to me to a considerable degree or a good part of time</label><br>
+        
+        <input class="choice" type="radio" name="DASS_4" id="DASS_4_4"  value="4" required>
+        <label for="DASS_4_4">Applied to me very much or most of the time</label><br>
+
+    </div>
+    <div class="twentyone"><p>18. I tended to overreact to situations</p>
+        <input class="choice" type="radio" name="DASS_6" id="DASS_6_1" value="1" required>
+        <label for="DASS_6_1">Did not apply to me at all</label><br>
+    
+        <input class="choice" type="radio" name="DASS_6" id="DASS_6_2" value="2" required>
+        <label for="DASS_6_2">Applied to me to some degree, or some of the time </label><br>
+        
+        <input class="choice" type="radio" name="DASS_6" id="DASS_6_3"  value="3" required>
+        <label for="DASS_6_3">Applied to me to a considerable degree or a good part of time</label><br>
+        
+        <input class="choice" type="radio" name="DASS_6" id="DASS_6_4"  value="4" required>
+        <label for="DASS_6_4">Applied to me very much or most of the time</label><br>
+
+    </div>
+    <div class="twentytwo"><p>19. I felt I was close to panic</p>
+        <input class="choice" type="radio" name="DASS_15" id="DASS_15_1" value="1" required>
+        <label for="DASS_15_1">Did not apply to me at all</label><br>
+    
+        <input class="choice" type="radio" name="DASS_15" id="DASS_15_2" value="2" required>
+        <label for="DASS_15_2">Applied to me to some degree, or some of the time </label><br>
+        
+        <input class="choice" type="radio" name="DASS_15" id="DASS_15_3"  value="3" required>
+        <label for="DASS_15_3">Applied to me to a considerable degree or a good part of time</label><br>
+        
+        <input class="choice" type="radio" name="DASS_15" id="DASS_15_4"  value="4" required>
+        <label for="DASS_15_4">Applied to me very much or most of the time</label><br>
+
+    </div>
+    <div class="twentythree"><p>20. I felt that life was meaningless</p>
+        <input class="choice" type="radio" name="DASS_21" id="DASS_21_1" value="1" required>
+        <label for="DASS_21_1">Did not apply to me at all</label><br>
+    
+        <input class="choice" type="radio" name="DASS_21" id="DASS_21_2" value="2" required>
+        <label for="DASS_21_2">Applied to me to some degree, or some of the time </label><br>
+        
+        <input class="choice" type="radio" name="DASS_21" id="DASS_21_3"  value="3" required>
+        <label for="DASS_21_3">Applied to me to a considerable degree or a good part of time</label><br>
+        
+        <input class="choice" type="radio" name="DASS_21" id="DASS_21_4"  value="4" required>
+        <label for="DASS_21_4">Applied to me very much or most of the time</label><br>
+
+    </div>
+    
+    <p><button class="signin" type="submit" >Submit</button></p>
+    </form>
+    </div><br>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>

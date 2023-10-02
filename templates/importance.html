@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Importance of Mental Health</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Croissant+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/CSS/styles.css">
+    <link rel="icon" href="static/img/logo.png" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="logo navbar-brand" href="{{ url_for('index') }}"><img src="static/img/logo.png" width="100"></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="home nav-item">
+                        <a class="nav-link active" aria-current="page" href="login.html">Log In</a>
+                    </li>
+                    <li class="home nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('signup') }}">Sign Up</a>
+                    </li>
+                    <li class="home nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('progress') }}">Your Progress</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container col-xxl-8 px-4 py-5 home_1">
+        <h1 class="mental">The Importance of <span class="bold">Mental Health</span></h1>
+        <p class="lead">Learn why taking care of your mental health is essential for your overall well-being.</p>
+        <ul>
+            <li><span class="bold-li">Academic Performance:</span> Good mental health is essential for effective learning. Students who prioritize their mental well-being tend to perform better academically and have improved concentration and memory.</li>
+            <li><span class="bold-li">Stress Management: </span>College life can be stressful, and mental health plays a crucial role in managing stress. Effective stress management techniques are vital for students to cope with academic pressure and maintain a healthy work-life balance.</li>
+            <li><span class="bold-li">Emotional Well-Being: </span>Mental health affects emotional stability. Students with good mental health are better equipped to handle emotional challenges, such as homesickness, relationship issues, and anxiety.</li>
+            <li><span class="bold-li">Healthy Relationships: </span>Maintaining positive relationships with peers, professors, and family members is essential for student success. Good mental health helps students build and sustain these relationships.</li>
+            <li><span class="bold-li">Personal Development: </span>College is a time for personal growth and development. Mental health contributes to self-esteem, self-confidence, and personal resilience, which are critical for growth and self-discovery.</li>
+            <li><span class="bold-li">Physical Health: </span>Mental health is closely connected to physical health. A healthy mind promotes a healthy body, and vice versa. Students with good mental health are more likely to engage in physical activities and maintain a balanced diet.</li>
+            <li><span class="bold-li">Sleep Quality: </span>Adequate sleep is vital for cognitive functioning and overall well-being. Mental health influences sleep quality, and students with mental health awareness are more likely to establish healthy sleep routines.</li>
+            <li><span class="bold-li">Career Preparation: </span>Preparing for a future career is a significant aspect of student life. Good mental health enables students to set career goals, handle job-related stress, and make informed decisions about their future.</li>
+            <li><span class="bold-li">Community Involvement: </span>Active participation in campus and community activities can be enriching. Positive mental health fosters a sense of belonging and encourages students to engage in extracurricular activities and volunteer work.</li>
+            <li><span class="bold-li">Resilience: </span>Resilience is the ability to bounce back from setbacks and challenges. It's an important life skill that can be developed through good mental health practices. Resilient students are more adaptable to change and less likely to be overwhelmed by setbacks.</li>
+            <li><span class="bold-li">Seeking Help: </span>Encourage students to seek help when needed. Let them know that seeking support from counselors, therapists, or support groups is a sign of strength, not weakness. Mental health resources are available on campus and within the community.</li>
+            <li><span class="bold-li">Reducing Stigma: </span>Promote awareness about mental health and help reduce the stigma associated with seeking help. When students feel comfortable discussing mental health openly, it creates a more supportive and inclusive campus environment.</li>
+        </ul>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <p><button type="button" class="yes"><a class="link" href="{{ url_for('questions') }}" >Take Quiz</a></button></p>
+        </div>
+    </div>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>
