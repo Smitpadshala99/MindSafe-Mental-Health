@@ -1,0 +1,56 @@
+import pandas as pd
+from sklearn.cluster import KMeans
+from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+
+# Step 1: Load data from a CSV file (replace 'csv_mindSafe.csv' with your file path)
+data = pd.read_csv('C:\\Users\\Shlok\\Downloads\\Student_mental_normalized2.csv')
+
+# Extract the "Diagnosis" column as labels
+data = data[~(data['Diagnosis'] == 3)]
+labels = data['Diagnosis']
+
+# Exclude columns 'id', 'name', 'Diagnosis_text', and 'Other Ethnicity_text' from clustering
+columns_to_exclude = ['id', 'Diagnosis_text', 'Diagnosis']
+clustering_data = data.drop(columns=columns_to_exclude)
+
+# Step 2: Clustering data
+n_clusters = 2  # Number of clusters
+kmeans = KMeans(n_clusters=n_clusters, random_state=0)
+data['Cluster'] = kmeans.fit_predict(clustering_data)
+
+# Step 3: Evaluate clustering accuracy using the "Diagnosis" labels
+
+cluster_labels = data['Cluster']
+
+# Compute accuracy by comparing cluster labels with original "Diagnosis" values
+cluster_labels = cluster_labels + 1
+accuracy = accuracy_score(labels, cluster_labels)
+
+# Step 4: Assign Cluster Names (Customize this based on your data)
+cluster_names = {
+    0: 'Cluster A',
+    1: 'Cluster B'
+}
+
+# Step 5: Perform PCA for dimensionality reduction
+pca = PCA(n_components=2)  # You can adjust the number of components as needed
+reduced_data = pca.fit_transform(clustering_data)
+
+# Step 6: Plot the final clusters in 2D space
+plt.figure(figsize=(8, 6))
+colors = ['b', 'g']  # Define colors for the clusters (adjust as needed)
+
+for cluster_id, color in zip(range(n_clusters), colors):
+    cluster_data = reduced_data[data['Cluster'] == cluster_id]
+    plt.scatter(cluster_data[:, 0], cluster_data[:, 1], c=color, label=f'Cluster {cluster_id}')
+
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.title('K-Means Clustering (PCA)')
+plt.legend()
+plt.show()
+
+# Print clustering accuracy
+print(f'Clustering Accuracy: {accuracy * 100:.2f}%')
